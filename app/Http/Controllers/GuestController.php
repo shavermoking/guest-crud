@@ -29,14 +29,14 @@ class GuestController extends Controller
     public function getGuestById(int $id): JsonResponse
     {
         $guest = $this->guestService->getGuestById($id);
-        return response()->json($guest, 201);
+        return response()->json($guest);
     }
 
     public function createGuest(CreateGuestRequest $request): Application|RedirectResponse|Redirector|JsonResponse
     {
 
         $guest = $this->guestService->createGuest($request);
-        return response()->json($guest);
+        return response()->json($guest, 201);
     }
 
     public function updateGuest(int $id, UpdateGuestRequest $request): JsonResponse

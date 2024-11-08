@@ -30,7 +30,8 @@
         "id": "integer",
         "name": "string",
         "email": "string",
-        "phone": "string"
+        "phone": "string",
+        "country": "string"
     }
     ```
     - **400 Bad Request**: Ошибка валидации данных.
@@ -67,6 +68,7 @@
         "surname": "string",
         "mail": "string",
         "phone": "string"
+        "country": "string"
     }
     ```
     - **404 Not Found**: Гость не найден.
@@ -93,7 +95,8 @@
         "name": "string",
         "surname": "string",
         "mail": "string",
-        "phone": "string"
+        "phone": "string",
+        "country": "string"
     }
     ```
     - **404 Not Found**: Гость не найден.

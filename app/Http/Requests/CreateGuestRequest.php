@@ -28,7 +28,7 @@ class CreateGuestRequest extends FormRequest
             'surname' => ['required', 'string', 'max:255'],
             'mail' => ['required', 'email', 'max:255', 'unique:guests,mail'],
             'phone' => ['required', 'string', 'max:20', 'unique:guests,phone', 'regex:/^\+?[0-9\s\-()]*$/'],
-            'country' => ['required', 'string', 'max:100'],
+            'country' => ['nullable', 'string', 'max:100'],
         ];
     }
 

@@ -7,7 +7,8 @@ use App\Http\Requests\CreateGuestRequest;
 use App\Http\Requests\UpdateGuestRequest;
 use App\Models\Guest;
 use Illuminate\Contracts\Pagination\LengthAwarePaginator;
-use Illuminate\Http\JsonResponse;
+use Propaganistas\LaravelPhone\PhoneNumber;
+
 
 class GuestService implements IGuest
 {
@@ -24,7 +25,16 @@ class GuestService implements IGuest
 
     public function createGuest(CreateGuestRequest $request)
     {
-        return Guest::query()->create($request->validated());
+        $country = $request->input('country');
+        if (empty($country) && $request->filled('phone')) {
+            $phoneNumber = new PhoneNumber($request->input('phone'));
+            $country = $phoneNumber->getCountry();
+        }
+
+        $guestData = $request->validated();
+        $guestData['country'] = $country;
+
+        return Guest::query()->create((array)$guestData);
     }
 
     public function updateGuest(int $id, UpdateGuestRequest $request)

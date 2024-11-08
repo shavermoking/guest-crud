@@ -1,11 +1,11 @@
 # guest-crud
 
 # installation
-1. cp .env.example .env (до поднятия контейнеров нужно заполнить поле DB_PASSWORD. APP_PORT по умолчанию 81, можно сменить на свой)
-1. composer i
-2. sail up -d
-3. sail artisan guest:install
-4. (По надобности, создаст 10 пользователей) sail artisan db:seed
+1. `cp .env.example .env` (до поднятия контейнеров нужно заполнить поле DB_PASSWORD. APP_PORT по умолчанию 81, можно сменить на свой)
+1. `composer i`
+2. `sail up -d`
+3. `sail artisan guest:install`
+4. (По надобности, создаст 10 пользователей) `sail artisan db:seed`
 
 
 ## Endpoints

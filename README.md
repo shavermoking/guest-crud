@@ -10,7 +10,7 @@
 
 ## Endpoints
 
-Все роуты имеют префикс /api. Пример: localhost:8080/api/guests
+Все роуты имеют префикс `/api`. Пример: `localhost:8080/api/guests`
 
 ### 1. Создать гостя
 - **URL**: `/guest`

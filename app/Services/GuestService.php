@@ -3,33 +3,43 @@
 namespace App\Services;
 
 use App\Contracts\IGuest;
+use App\Http\Requests\GuestRequest;
 use App\Models\Guest;
+use Illuminate\Contracts\Pagination\LengthAwarePaginator;
+use Illuminate\Http\JsonResponse;
 
 class GuestService implements IGuest
 {
 
-    public function getGuests(int $perPage = 10)
+    public function getGuests(int $perPage = 10): LengthAwarePaginator
     {
-        return Guest::paginate($perPage);
+        return Guest::query()->paginate($perPage);
     }
 
-    public function getGuestById(int $id)
+    public function getGuestById(int $id): Guest
     {
-        return Guest::find($id);
+        return Guest::query()->findOrFail($id);
     }
 
-    public function createGuest()
+    public function createGuest(GuestRequest $request)
     {
-        // TODO: Implement createGuest() method.
+        return Guest::query()->create($request->validated());
     }
 
-    public function updateGuest()
+    public function updateGuest(int $id, GuestRequest $request)
     {
-        // TODO: Implement updateGuest() method.
+
+        $guest = Guest::query()->findOrFail($id);
+
+        $guest->update($request->validated());
+
+        return $guest;
+
     }
 
-    public function deleteGuest(int $id)
+    public function deleteGuest(int $id): void
     {
-        // TODO: Implement deleteGuest() method.
+        $guest = Guest::query()->findOrFail($id);
+        $guest->delete();
     }
 }

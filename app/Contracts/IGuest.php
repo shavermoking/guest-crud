@@ -2,7 +2,8 @@
 
 namespace App\Contracts;
 
-use App\Http\Requests\GuestRequest;
+use App\Http\Requests\CreateGuestRequest;
+use App\Http\Requests\UpdateGuestRequest;
 
 interface IGuest
 {
@@ -10,9 +11,9 @@ interface IGuest
 
     public function getGuestById(int $id);
 
-    public function createGuest(GuestRequest $request);
+    public function createGuest(CreateGuestRequest $request);
 
-    public function updateGuest(int $id, GuestRequest $request);
+    public function updateGuest(int $id, UpdateGuestRequest $request);
 
     public function deleteGuest(int $id);
 }

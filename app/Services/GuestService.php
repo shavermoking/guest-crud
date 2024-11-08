@@ -3,7 +3,8 @@
 namespace App\Services;
 
 use App\Contracts\IGuest;
-use App\Http\Requests\GuestRequest;
+use App\Http\Requests\CreateGuestRequest;
+use App\Http\Requests\UpdateGuestRequest;
 use App\Models\Guest;
 use Illuminate\Contracts\Pagination\LengthAwarePaginator;
 use Illuminate\Http\JsonResponse;
@@ -21,12 +22,12 @@ class GuestService implements IGuest
         return Guest::query()->findOrFail($id);
     }
 
-    public function createGuest(GuestRequest $request)
+    public function createGuest(CreateGuestRequest $request)
     {
         return Guest::query()->create($request->validated());
     }
 
-    public function updateGuest(int $id, GuestRequest $request)
+    public function updateGuest(int $id, UpdateGuestRequest $request)
     {
 
         $guest = Guest::query()->findOrFail($id);

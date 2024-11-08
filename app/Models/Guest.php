@@ -11,7 +11,13 @@ class Guest extends Model
 {
     use HasFactory;
 
-    protected $guarded = [];
+    protected $fillable = [
+        'name',
+        'surname',
+        'phone',
+        'mail',
+        'country'
+    ];
 
     public $timestamps = false;
 }

@@ -3,9 +3,13 @@
 namespace App\Http\Controllers;
 
 use App\Contracts\IGuest;
-use App\Http\Requests\GuestRequest;
+use App\Http\Requests\CreateGuestRequest;
+use App\Http\Requests\UpdateGuestRequest;
+use Illuminate\Foundation\Application;
 use Illuminate\Http\JsonResponse;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
+use Illuminate\Routing\Redirector;
 use Illuminate\Support\Facades\App;
 
 class GuestController extends Controller
@@ -25,18 +29,17 @@ class GuestController extends Controller
     public function getGuestById(int $id): JsonResponse
     {
         $guest = $this->guestService->getGuestById($id);
-        return response()->json($guest);
+        return response()->json($guest, 201);
     }
 
-    public function createGuest(GuestRequest $request): JsonResponse
+    public function createGuest(CreateGuestRequest $request): Application|RedirectResponse|Redirector|JsonResponse
     {
-        $validatedData = $request->validated();
 
-        $guest = $this->guestService->createGuest($validatedData);
+        $guest = $this->guestService->createGuest($request);
         return response()->json($guest);
     }
 
-    public function updateGuest(int $id, GuestRequest $request): JsonResponse
+    public function updateGuest(int $id, UpdateGuestRequest $request): JsonResponse
     {
         $guest = $this->guestService->updateGuest($id, $request);
         return response()->json($guest);

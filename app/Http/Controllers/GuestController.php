@@ -20,32 +20,32 @@ class GuestController extends Controller
         $this->guestService = App::make(IGuest::class);
     }
 
-    public function getGuests(): JsonResponse
+    public function index(): JsonResponse
     {
         $guests = $this->guestService->getGuests();
         return response()->json($guests);
     }
 
-    public function getGuestById(int $id): JsonResponse
+    public function show(int $id): JsonResponse
     {
         $guest = $this->guestService->getGuestById($id);
         return response()->json($guest);
     }
 
-    public function createGuest(CreateGuestRequest $request): Application|RedirectResponse|Redirector|JsonResponse
+    public function store(CreateGuestRequest $request): Application|RedirectResponse|Redirector|JsonResponse
     {
 
         $guest = $this->guestService->createGuest($request);
         return response()->json($guest, 201);
     }
 
-    public function updateGuest(int $id, UpdateGuestRequest $request): JsonResponse
+    public function update(int $id, UpdateGuestRequest $request): JsonResponse
     {
         $guest = $this->guestService->updateGuest($id, $request);
         return response()->json($guest);
     }
 
-    public function deleteGuest(int $id): JsonResponse
+    public function destroy(int $id): JsonResponse
     {
         $this->guestService->deleteGuest($id);
         return response()->json(['message' => 'Guest successfully deleted']);
